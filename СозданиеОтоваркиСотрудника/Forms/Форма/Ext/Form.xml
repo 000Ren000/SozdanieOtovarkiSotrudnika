@@ -3,6 +3,7 @@
 	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
 	<Events>
+		<Event name="OnOpen">ПриОткрытии</Event>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
 	<ChildItems>
@@ -19,7 +20,7 @@
 					<v8:content>Шапка</v8:content>
 				</v8:item>
 			</ToolTip>
-			<Group>Vertical</Group>
+			<Group>AlwaysHorizontal</Group>
 			<Behavior>Usual</Behavior>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
@@ -38,7 +39,7 @@
 							<v8:content>Верх</v8:content>
 						</v8:item>
 					</ToolTip>
-					<Group>AlwaysHorizontal</Group>
+					<Group>Vertical</Group>
 					<Behavior>Usual</Behavior>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
@@ -48,11 +49,23 @@
 							<DataPath>ГруппаКонтрагентов</DataPath>
 							<ContextMenu name="ГруппаКонтрагентовКонтекстноеМеню" id="4"/>
 							<ExtendedTooltip name="ГруппаКонтрагентовРасширеннаяПодсказка" id="5"/>
+							<Events>
+								<Event name="StartListChoice">ГруппаКонтрагентовНачалоВыбораИзСписка</Event>
+							</Events>
 						</InputField>
 						<InputField name="Магазин" id="6">
 							<DataPath>Магазин</DataPath>
 							<ContextMenu name="МагазинКонтекстноеМеню" id="7"/>
 							<ExtendedTooltip name="МагазинРасширеннаяПодсказка" id="8"/>
+						</InputField>
+						<InputField name="Партнер" id="26">
+							<DataPath>Партнер</DataPath>
+							<ClearButton>true</ClearButton>
+							<ContextMenu name="ПартнерКонтекстноеМеню" id="27"/>
+							<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="28"/>
+							<Events>
+								<Event name="OnChange">ПартнерПриИзменении</Event>
+							</Events>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
@@ -69,7 +82,7 @@
 							<v8:content>Низ</v8:content>
 						</v8:item>
 					</ToolTip>
-					<Group>AlwaysHorizontal</Group>
+					<Group>Vertical</Group>
 					<Behavior>Usual</Behavior>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
@@ -87,52 +100,53 @@
 							<ContextMenu name="СоглашениеКонтекстноеМеню" id="24"/>
 							<ExtendedTooltip name="СоглашениеРасширеннаяПодсказка" id="25"/>
 						</LabelField>
+						<LabelField name="КартаЛояльности" id="38">
+							<DataPath>КартаЛояльности</DataPath>
+							<Hiperlink>true</Hiperlink>
+							<ContextMenu name="КартаЛояльностиКонтекстноеМеню" id="39"/>
+							<ExtendedTooltip name="КартаЛояльностиРасширеннаяПодсказка" id="40"/>
+						</LabelField>
 					</ChildItems>
 				</UsualGroup>
-				<InputField name="Партнер" id="26">
-					<DataPath>Партнер</DataPath>
-					<ClearButton>true</ClearButton>
-					<ContextMenu name="ПартнерКонтекстноеМеню" id="27"/>
-					<ExtendedTooltip name="ПартнерРасширеннаяПодсказка" id="28"/>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаФИО" id="12">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа ФИО</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группа ФИО</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Group>AlwaysHorizontal</Group>
+			<Behavior>Usual</Behavior>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаФИОРасширеннаяПодсказка" id="13"/>
+			<ChildItems>
+				<InputField name="ФИО" id="9">
+					<DataPath>ФИО</DataPath>
+					<DefaultItem>true</DefaultItem>
+					<ContextMenu name="ФИОКонтекстноеМеню" id="10"/>
+					<ExtendedTooltip name="ФИОРасширеннаяПодсказка" id="11"/>
 				</InputField>
-				<UsualGroup name="ГруппаФИО" id="12">
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Группа ФИО</v8:content>
-						</v8:item>
-					</Title>
-					<ToolTip>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Группа ФИО</v8:content>
-						</v8:item>
-					</ToolTip>
-					<Group>AlwaysHorizontal</Group>
-					<Behavior>Usual</Behavior>
-					<Representation>None</Representation>
-					<ShowTitle>false</ShowTitle>
-					<ExtendedTooltip name="ГруппаФИОРасширеннаяПодсказка" id="13"/>
-					<ChildItems>
-						<InputField name="ФИО" id="9">
-							<DataPath>ФИО</DataPath>
-							<ContextMenu name="ФИОКонтекстноеМеню" id="10"/>
-							<ExtendedTooltip name="ФИОРасширеннаяПодсказка" id="11"/>
-						</InputField>
-						<InputField name="Лимит" id="33">
-							<DataPath>Лимит</DataPath>
-							<BackColor>#EAFFE6</BackColor>
-							<ContextMenu name="ЛимитКонтекстноеМеню" id="34"/>
-							<ExtendedTooltip name="ЛимитРасширеннаяПодсказка" id="35"/>
-						</InputField>
-						<Button name="ФормаСоздать" id="14">
-							<Type>UsualButton</Type>
-							<DefaultButton>true</DefaultButton>
-							<CommandName>Form.Command.Создать</CommandName>
-							<ExtendedTooltip name="ФормаСоздатьРасширеннаяПодсказка" id="15"/>
-						</Button>
-					</ChildItems>
-				</UsualGroup>
+				<InputField name="Лимит" id="33">
+					<DataPath>Лимит</DataPath>
+					<BackColor>#EAFFE6</BackColor>
+					<ContextMenu name="ЛимитКонтекстноеМеню" id="34"/>
+					<ExtendedTooltip name="ЛимитРасширеннаяПодсказка" id="35"/>
+				</InputField>
+				<Button name="ФормаСоздать" id="14">
+					<Type>UsualButton</Type>
+					<DefaultButton>true</DefaultButton>
+					<CommandName>Form.Command.Создать</CommandName>
+					<ExtendedTooltip name="ФормаСоздатьРасширеннаяПодсказка" id="15"/>
+				</Button>
 			</ChildItems>
 		</UsualGroup>
 		<Button name="СоздатьДоговор" id="29">
@@ -144,6 +158,11 @@
 			<Type>UsualButton</Type>
 			<CommandName>Form.Command.СоздатьСоглашение</CommandName>
 			<ExtendedTooltip name="СоздатьСоглашениеРасширеннаяПодсказка" id="32"/>
+		</Button>
+		<Button name="СоздатьКартуЛояльности" id="36">
+			<Type>UsualButton</Type>
+			<CommandName>Form.Command.СоздатьКартуЛояльности</CommandName>
+			<ExtendedTooltip name="СоздатьКартуЛояльностиРасширеннаяПодсказка" id="37"/>
 		</Button>
 	</ChildItems>
 	<Attributes>
@@ -243,6 +262,17 @@
 				<v8:TypeSet>cfg:DefinedType.ДенежнаяСуммаГосИСНеотрицательная</v8:TypeSet>
 			</Type>
 		</Attribute>
+		<Attribute name="КартаЛояльности" id="9">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Карта лояльности</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.КартыЛояльности</v8:Type>
+			</Type>
+		</Attribute>
 	</Attributes>
 	<Commands>
 		<Command name="Создать" id="1">
@@ -288,6 +318,22 @@
 					<v8:content>Создать соглашение</v8:content>
 				</v8:item>
 			</ToolTip>
+			<Action>СоздатьСоглашение</Action>
+		</Command>
+		<Command name="СоздатьКартуЛояльности" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать карту лояльности</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создать карту лояльности</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СоздатьКартуЛояльности</Action>
 		</Command>
 	</Commands>
 </Form>
